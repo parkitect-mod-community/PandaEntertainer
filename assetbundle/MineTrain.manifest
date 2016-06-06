@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 159956011
+CRC: 2939859581
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 298dca6b39ef4837c82ed33c2b9a8e22
+    Hash: ac648400b757e84b2fc467a73caa3cb2
   TypeTreeHash:
     serializedVersion: 2
     Hash: 234d185ef25e4659214c411635d4afe0
@@ -28,4 +28,5 @@ ClassTypes:
 Assets:
 - Assets/Front_Car.prefab
 - Assets/Back_Car.prefab
+- Assets/box_support.prefab
 Dependencies: []

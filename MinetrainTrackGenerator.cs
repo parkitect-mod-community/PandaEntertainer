@@ -37,7 +37,7 @@ public class MinetrainTrackGenerator : MeshGenerator
 
     private const float buildVolumeHeight = 0.7f;
 
-    public const float SupoortBeamSize = .0428281f;
+    public const float SupoortBeamSize = .0728281f;
 
     private const float SupportBoxArea = .7f;
 
@@ -47,9 +47,11 @@ public class MinetrainTrackGenerator : MeshGenerator
 
     private BoxExtruder collisionMeshExtruder;
 
-    private BoxExtruder[] crossBeamExtruder;
+    private BoxExtruder[] TrackBeamExtruder;
 
     private BoxExtruder SupportBeamExtruder;
+
+    private BoxExtruder SupportBottomBeamExtruder;
 
     protected override void Initialize()
     {
@@ -71,15 +73,20 @@ public class MinetrainTrackGenerator : MeshGenerator
         SupportBeamExtruder.setUV (14, 15);
         SupportBeamExtruder.closeEnds = true;
 
-        crossBeamExtruder = new BoxExtruder[4];
-        crossBeamExtruder [0] = new BoxExtruder (.145123f, railSize);
-        crossBeamExtruder [1] = new BoxExtruder (0.0448f, railSize);
-        crossBeamExtruder [2] = new BoxExtruder (0.125123f,railSize);
-        crossBeamExtruder [3] = new BoxExtruder (0.09f, railSize);
+        SupportBottomBeamExtruder = new BoxExtruder (SupoortBeamSize * 2.0f, SupoortBeamSize);
+        SupportBottomBeamExtruder.setUV (14, 15);
+        SupportBottomBeamExtruder.closeEnds = true;
+
+
+        TrackBeamExtruder = new BoxExtruder[4];
+        TrackBeamExtruder [0] = new BoxExtruder (.145123f, railSize);
+        TrackBeamExtruder [1] = new BoxExtruder (0.0448f, railSize);
+        TrackBeamExtruder [2] = new BoxExtruder (0.125123f,railSize);
+        TrackBeamExtruder [3] = new BoxExtruder (0.09f, railSize);
 
         for (int x = 0; x < 4; x++) {
-            crossBeamExtruder [x].setUV (14, 15);
-            crossBeamExtruder [x].closeEnds = true;
+            TrackBeamExtruder [x].setUV (14, 14);
+            TrackBeamExtruder [x].closeEnds = true;
         }
        
         this.collisionMeshExtruder = new BoxExtruder(base.trackWidth, 0.022835f);
@@ -123,12 +130,12 @@ public class MinetrainTrackGenerator : MeshGenerator
             Vector3 pivot = base.getTrackPivot (trackSegment.getPoint (tForDistance), normal);
 
             float crossBeamOffset = BeamSizeVariation [crossBeamIndex % BeamSizeVariation.Length];
-            BoxExtruder selectedCrossBeamExtruder = crossBeamExtruder [(crossBeamIndex + 10) % crossBeamExtruder.Length];
+            BoxExtruder selectedCrossBeamExtruder = TrackBeamExtruder [(crossBeamIndex + 10) % TrackBeamExtruder.Length];
 
             Vector3 left =  tangetPoint.normalized * (selectedCrossBeamExtruder.width / 2.0f) + Vector3.down * railSize + pivot + binormal * (base.trackWidth + crossBeamOffset) / 2f;
             Vector3 right = tangetPoint.normalized * (selectedCrossBeamExtruder.width / 2.0f) + Vector3.down * railSize + pivot - binormal * (base.trackWidth + crossBeamOffset) / 2f;
 
-            pos += crossBeamExtruder[(crossBeamIndex + 10) % crossBeamExtruder.Length].width + .03f;
+            pos += TrackBeamExtruder[(crossBeamIndex + 10) % TrackBeamExtruder.Length].width + .03f;
             if (pos > trackSegment.getLength ())
                 break;
 
@@ -153,8 +160,8 @@ public class MinetrainTrackGenerator : MeshGenerator
 
             float crossBeamOffset = BeamSizeVariation [crossBeamIndex % BeamSizeVariation.Length] * .3f;
 
-            Vector3 left = pivot + binormal * (SupportBoxArea / 2.0f) + Vector3.down * (railSize +railSize);
-            Vector3 right = pivot - binormal * (SupportBoxArea/ 2.0f) + Vector3.down * (railSize +railSize);
+            Vector3 left = pivot + binormal * (SupportBoxArea / 2.0f) + Vector3.down * (railSize +railSize + SupoortBeamSize/2.0f);
+            Vector3 right = pivot - binormal * (SupportBoxArea/ 2.0f) + Vector3.down * (railSize +railSize  + SupoortBeamSize/2.0f);
   
             SupportBeamExtruder.extrude (left + binormal * crossBeamOffset , binormal * -1f, normal);
             SupportBeamExtruder.extrude (right - binormal * crossBeamOffset , binormal* -1f, normal);
@@ -168,6 +175,10 @@ public class MinetrainTrackGenerator : MeshGenerator
             SupportBeamExtruder.extrude (new Vector3(right.x,Mathf.FloorToInt(right.y),right.z) , normal, binormal);
             SupportBeamExtruder.end ();
 
+            SupportBottomBeamExtruder.extrude (new Vector3(left.x,Mathf.FloorToInt(left.y),left.z)  + binormal * (.5f / 2.0f) , binormal * -1f, Vector3.down);
+            SupportBottomBeamExtruder.extrude (new Vector3(right.x,Mathf.FloorToInt(right.y),right.z) - binormal * (.5f / 2.0f)  , binormal * -1f, Vector3.down);
+            SupportBottomBeamExtruder.end ();
+            
 
             pos += segments;
             crossBeamIndex++;
@@ -181,12 +192,13 @@ public class MinetrainTrackGenerator : MeshGenerator
             {
                 this.leftRailExtruder,
                 this.rightRailExtruder,
-                crossBeamExtruder [0],
-                crossBeamExtruder [1],
-                crossBeamExtruder [2],
-                crossBeamExtruder [3],
-                SupportBeamExtruder
-            }).add(crossBeamExtruder).end(putMeshOnGO.transform.worldToLocalMatrix);
+                TrackBeamExtruder [0],
+                TrackBeamExtruder [1],
+                TrackBeamExtruder [2],
+                TrackBeamExtruder [3],
+                SupportBeamExtruder,
+                SupportBottomBeamExtruder
+            }).add(TrackBeamExtruder).end(putMeshOnGO.transform.worldToLocalMatrix);
     }
 
     public override Mesh getCollisionMesh(GameObject putMeshOnGO)

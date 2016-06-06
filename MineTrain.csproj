@@ -63,6 +63,8 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="MinetrainTrackGenerator.cs" />
     <Compile Include="MineTrainCar.cs" />
+    <Compile Include="MineTrainSupportInstantiator.cs" />
+    <Compile Include="MineTrainSupports.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>

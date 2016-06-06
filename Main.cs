@@ -36,6 +36,10 @@ public class Main : IMod
 
         TrackedRide trackRider = UnityEngine.Object.Instantiate (selected);
 
+        MineTrainSupportInstantiator supportInstaiator = ScriptableObject.CreateInstance<MineTrainSupportInstantiator> ();
+        AssetManager.Instance.registerObject (supportInstaiator);
+        supportInstaiator.baseMaterial = selected.meshGenerator.material;
+
         trackRider.dropsImportanceExcitement = .7f;
         trackRider.inversionsImportanceExcitement = .67f;
         trackRider.averageLatGImportanceExcitement = .7f;
@@ -44,7 +48,7 @@ public class Main : IMod
         trackRider.meshGenerator.material = selected.meshGenerator.material;
         trackRider.meshGenerator.liftMaterial = selected.meshGenerator.liftMaterial;
         trackRider.meshGenerator.frictionWheelsGO = selected.meshGenerator.frictionWheelsGO;
-        trackRider.meshGenerator.supportInstantiator = selected.meshGenerator.supportInstantiator;
+        trackRider.meshGenerator.supportInstantiator = supportInstaiator;//selected.meshGenerator.supportInstantiator;
         trackRider.meshGenerator.crossBeamGO = selected.meshGenerator.crossBeamGO;
 
 
