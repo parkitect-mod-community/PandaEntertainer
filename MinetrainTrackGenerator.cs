@@ -56,7 +56,7 @@ public class MinetrainTrackGenerator : MeshGenerator
     protected override void Initialize()
     {
         base.Initialize();
-        base.trackWidth = 0.376f;
+        base.trackWidth = 0.25f;
         this.crossBeamSpacing = 0.5f;
     }
 

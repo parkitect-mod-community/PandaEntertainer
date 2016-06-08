@@ -12,7 +12,7 @@ public class MineTrainSupportInstantiator : SupportInstantiator
             MineTrainSupports component = UnityEngine.Object.Instantiate (Main.AssetBundleManager.SupportMineTrainGo).GetComponent<MineTrainSupports> ();
             component.crossedTiles = crossedTiles.getCrossedSides (current.x, current.z);
             component.x = current.x;
-            component.y = (int)current.minYOnRails;
+            component.y = current.minYOnRails;
             component.z = current.z;
             component.baseMaterial = baseMaterial;
             component.transform.parent = putMeshOnGO.transform;

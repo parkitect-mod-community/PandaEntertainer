@@ -7,13 +7,13 @@ public class Main : IMod
 	public static AssetBundleManager AssetBundleManager = null;
     public static Configuration Configeration = null;
 
+    private List<UnityEngine.Object> registeredObjects = new List<UnityEngine.Object>();
+
     GameObject hider;
     public void onEnabled()
     {
 
         hider = new GameObject ();
-
-        UnityEngine.Debug.Log ("workling !!!");
 
 		if (Main.AssetBundleManager == null) {
 
@@ -21,13 +21,14 @@ public class Main : IMod
 		}
 
         TrackedRide selected = null;
-        foreach (TrackedRide t in AssetManager.Instance.getAttractionObjects ()) {
+        foreach (Attraction t in AssetManager.Instance.getAttractionObjects ()) {
             if (t.getUnlocalizedName() == "Wooden Coaster") {
-                selected = t;
+                selected = (TrackedRide)t;
                 break;
                     
             }
         }
+
 
         int pillar = 89;
         int center = 100;
@@ -38,6 +39,7 @@ public class Main : IMod
 
         MineTrainSupportInstantiator supportInstaiator = ScriptableObject.CreateInstance<MineTrainSupportInstantiator> ();
         AssetManager.Instance.registerObject (supportInstaiator);
+        registeredObjects.Add (supportInstaiator);
         supportInstaiator.baseMaterial = selected.meshGenerator.material;
 
         trackRider.dropsImportanceExcitement = .7f;
@@ -59,6 +61,7 @@ public class Main : IMod
         trackRider.price = 3600;
         trackRider.name = "Corkscrew_coaster_GO";
         AssetManager.Instance.registerObject (trackRider);
+        registeredObjects.Add (trackRider);
 
         //get car
         GameObject carGo = Main.AssetBundleManager.FrontCarGo;
@@ -91,8 +94,8 @@ public class Main : IMod
         //register cars
         AssetManager.Instance.registerObject (frontCar);
         AssetManager.Instance.registerObject (car);
-
-       
+        registeredObjects.Add (frontCar);
+        registeredObjects.Add (car);
         //Offset
         float CarOffset = .02f;
         car.offsetBack = CarOffset;
@@ -113,6 +116,7 @@ public class Main : IMod
 
         coasterCarInstantiator.displayName = "MineTrain Car";
         AssetManager.Instance.registerObject (coasterCarInstantiator);
+        registeredObjects.Add (coasterCarInstantiator);
 
         trains.Add (coasterCarInstantiator);
 
@@ -121,7 +125,6 @@ public class Main : IMod
         hider.SetActive (false);
         carGo.transform.parent = hider.transform;
         frontcarGo.transform.parent = hider.transform;
-
 
 
 	}
@@ -156,6 +159,11 @@ public class Main : IMod
 
     public void onDisabled()
     {
+        foreach(UnityEngine.Object o in registeredObjects)
+        {
+            AssetManager.Instance.unregisterObject (o);
+        }
+        UnityEngine.GameObject.DestroyImmediate (hider);
 	}
 
     public string Name

@@ -9,8 +9,13 @@ public class AssetBundleManager
     public GameObject BackCarGo;
 
     public GameObject[] Support_Go;
+    public GameObject[] AngledSupportGo;
+    public GameObject SupportHalf;
+
 
     public GameObject SupportMineTrainGo;
+
+
 
 	public AssetBundleManager (Main main)
 	{
@@ -19,7 +24,17 @@ public class AssetBundleManager
         BackCarGo = LoadAsset<GameObject> ("Back_Car");
 
         Support_Go = new GameObject[] {
-            LoadAsset<GameObject> ("box_support") };
+            LoadAsset<GameObject> ("Support_1"),
+            LoadAsset<GameObject> ("Support_2"),
+            LoadAsset<GameObject> ("Support_3 1")
+            };
+
+        AngledSupportGo = new GameObject[] {
+            LoadAsset<GameObject>("Angle_support_1"),
+            LoadAsset<GameObject>("Angle_support_2")
+        };
+
+        SupportHalf = LoadAsset<GameObject> ("Half_Support");
 
 
         SupportMineTrainGo = new GameObject ();
