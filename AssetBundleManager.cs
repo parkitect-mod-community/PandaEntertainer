@@ -13,15 +13,13 @@ public class AssetBundleManager
     public GameObject SupportHalf;
 
 
-    public GameObject SupportMineTrainGo;
-
 
 
 	public AssetBundleManager (Main main)
 	{
 		this.Main = main;
         FrontCarGo = LoadAsset<GameObject> ("Front_Car");
-        BackCarGo = LoadAsset<GameObject> ("Back_Car");
+        BackCarGo = LoadAsset<GameObject> ("Cart");
 
         Support_Go = new GameObject[] {
             LoadAsset<GameObject> ("Support_1"),
@@ -37,8 +35,6 @@ public class AssetBundleManager
         SupportHalf = LoadAsset<GameObject> ("Half_Support");
 
 
-        SupportMineTrainGo = new GameObject ();
-        SupportMineTrainGo.AddComponent<MineTrainSupports> ();
 
     }
 

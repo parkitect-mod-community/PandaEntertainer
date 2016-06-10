@@ -30,10 +30,6 @@ public class Main : IMod
         }
 
 
-        int pillar = 89;
-        int center = 100;
-        int crossbeam = 255;
-        int beams = 175;
 
         TrackedRide trackRider = UnityEngine.Object.Instantiate (selected);
 
@@ -54,7 +50,7 @@ public class Main : IMod
         trackRider.meshGenerator.crossBeamGO = selected.meshGenerator.crossBeamGO;
 
 
-        Color[] colors = new Color[] { new Color(pillar / 255f, pillar / 255f, pillar / 255f, 1), new Color(center / 255f, center / 255f, center / 255f, 1), new Color(crossbeam / 255f, crossbeam / 255f, crossbeam / 255f, 1), new Color(beams / 255f, beams / 255f, beams / 255f, 1) };
+        Color[] colors = new Color[] { new Color(63f / 255f, 46f / 255f, 37f / 255f, 1), new Color(43f / 255f, 35f / 255f, 35f / 255f, 1), new Color(90f / 255f, 90f / 255f, 90f / 255f, 1) };
         trackRider.meshGenerator.customColors = colors;
         trackRider.meshGenerator.customColors = colors;
         trackRider.setDisplayName("MineTrain Coaster");
@@ -64,12 +60,12 @@ public class Main : IMod
         registeredObjects.Add (trackRider);
 
         //get car
-        GameObject carGo = Main.AssetBundleManager.FrontCarGo;
+        GameObject carGo = UnityEngine.GameObject.Instantiate(Main.AssetBundleManager.BackCarGo);
         Rigidbody carRigid = carGo.AddComponent<Rigidbody> ();
         carRigid.isKinematic = true;
         carGo.AddComponent<BoxCollider> ();
 
-        GameObject frontcarGo = Main.AssetBundleManager.BackCarGo;
+        GameObject frontcarGo = UnityEngine.GameObject.Instantiate(Main.AssetBundleManager.FrontCarGo);
         Rigidbody frontcarRigid = frontcarGo.AddComponent<Rigidbody> ();
         frontcarRigid.isKinematic = true;
         frontcarGo.AddComponent<BoxCollider> ();
@@ -109,7 +105,7 @@ public class Main : IMod
 
 
         //Custom Colors
-        Color[] CarColors = new Color[] { new Color(168f / 255, 14f / 255, 14f / 255), new Color(234f / 255, 227f / 255, 227f / 255), new Color(73f / 255, 73f / 255, 73f / 255) };
+        Color[] CarColors = new Color[] { new Color(190f / 255, 29f / 255, 29f / 255), new Color(53f / 255, 30f / 255, 30f / 255), new Color(115f / 255, 10f / 255, 10f / 255),new Color(63f / 255, 57f / 255, 54f / 255)};
 
         MakeRecolorble(frontcarGo, "CustomColorsDiffuse", CarColors);
         MakeRecolorble(carGo, "CustomColorsDiffuse", CarColors);

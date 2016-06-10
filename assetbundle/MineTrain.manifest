@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 183469415
+CRC: 1501252562
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 621aeb3a0f819a63d87d2be74c0cb194
+    Hash: 2da09d1db790cebebee768f893f6c0cf
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 234d185ef25e4659214c411635d4afe0
+    Hash: f47e5080155a0c3ac2e9ffbbc14e366d
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -23,15 +23,13 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
-- Class: 65
-  Script: {instanceID: 0}
 Assets:
-- Assets/Front_Car.prefab
 - Assets/Angle_support_1.prefab
-- Assets/Back_Car.prefab
 - Assets/Support_1.prefab
 - Assets/End_Support.prefab
 - Assets/Half_Support.prefab
+- Assets/Cart.prefab
+- Assets/Front_Car.prefab
 - Assets/Angle_support_2.prefab
 - Assets/Support_3 1.prefab
 - Assets/Support_2.prefab

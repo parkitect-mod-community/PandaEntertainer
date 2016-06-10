@@ -90,7 +90,7 @@ public class MineTrainSupports : Support
     }
 
 
-    protected override void hideUnhide(bool possiblyCollidesWithNewObject = false)
+    protected override void hideUnhide(bool possiblyCollidesWithNewObject)
     {
         foreach (BoundingVolume current in this.boundingVolumes)
         {

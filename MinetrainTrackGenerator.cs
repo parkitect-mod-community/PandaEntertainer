@@ -85,7 +85,7 @@ public class MinetrainTrackGenerator : MeshGenerator
         TrackBeamExtruder [3] = new BoxExtruder (0.09f, railSize);
 
         for (int x = 0; x < 4; x++) {
-            TrackBeamExtruder [x].setUV (14, 14);
+            TrackBeamExtruder [x].setUV (15, 15);
             TrackBeamExtruder [x].closeEnds = true;
         }
        
