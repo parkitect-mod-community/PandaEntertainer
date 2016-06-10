@@ -105,7 +105,7 @@ public class Main : IMod
 
 
         //Custom Colors
-        Color[] CarColors = new Color[] { new Color(190f / 255, 29f / 255, 29f / 255), new Color(53f / 255, 30f / 255, 30f / 255), new Color(115f / 255, 10f / 255, 10f / 255),new Color(63f / 255, 57f / 255, 54f / 255)};
+        Color[] CarColors = new Color[] { new Color(68f / 255, 58f / 255, 50f / 255), new Color(176f / 255, 7f / 255, 7f / 255), new Color(55f / 255, 32f / 255, 12f / 255),new Color(61f / 255, 40f / 255, 19f / 255)};
 
         MakeRecolorble(frontcarGo, "CustomColorsDiffuse", CarColors);
         MakeRecolorble(carGo, "CustomColorsDiffuse", CarColors);
@@ -169,7 +169,7 @@ public class Main : IMod
 
     public string Description
     {
-        get { return "Allows the User to modify track Path"; }
+        get { return "Mine Train Coaster"; }
     }
 
 

@@ -145,43 +145,44 @@ public class MinetrainTrackGenerator : MeshGenerator
 
             crossBeamIndex++;
         }
+        if (!(trackSegment is Station)) {
+            pos = 0.0f;
+            float segments = trackSegment.getLength () / (float)Mathf.RoundToInt (trackSegment.getLength () / this.crossBeamSpacing);
+            //inbetween supports for edge of track
+            while (pos < trackSegment.getLength ()) {
+                float tForDistance = trackSegment.getTForDistance (pos);
 
-        pos = 0.0f;
-        float segments = trackSegment.getLength () / (float)Mathf.RoundToInt (trackSegment.getLength () / this.crossBeamSpacing);
-        //inbetween supports for edge of track
-        while (pos < trackSegment.getLength ()) {
-            float tForDistance = trackSegment.getTForDistance(pos);
-
-            Vector3 normal = trackSegment.getNormal(tForDistance);
-            Vector3 tangetPoint = trackSegment.getTangentPoint (tForDistance);
-            Vector3 binormal = Vector3.Cross (normal, tangetPoint).normalized;
-            Vector3 pivot = base.getTrackPivot (trackSegment.getPoint (tForDistance), normal);
+                Vector3 normal = trackSegment.getNormal (tForDistance);
+                Vector3 tangetPoint = trackSegment.getTangentPoint (tForDistance);
+                Vector3 binormal = Vector3.Cross (normal, tangetPoint).normalized;
+                Vector3 pivot = base.getTrackPivot (trackSegment.getPoint (tForDistance), normal);
 
 
-            float crossBeamOffset = BeamSizeVariation [crossBeamIndex % BeamSizeVariation.Length] * .3f;
+                float crossBeamOffset = BeamSizeVariation [crossBeamIndex % BeamSizeVariation.Length] * .3f;
 
-            Vector3 left = pivot + binormal * (SupportBoxArea / 2.0f) + Vector3.down * (railSize +railSize + SupoortBeamSize/2.0f);
-            Vector3 right = pivot - binormal * (SupportBoxArea/ 2.0f) + Vector3.down * (railSize +railSize  + SupoortBeamSize/2.0f);
+                Vector3 left = pivot + binormal * (SupportBoxArea / 2.0f) + Vector3.down * (railSize + railSize + SupoortBeamSize / 2.0f);
+                Vector3 right = pivot - binormal * (SupportBoxArea / 2.0f) + Vector3.down * (railSize + railSize + SupoortBeamSize / 2.0f);
   
-            SupportBeamExtruder.extrude (left + binormal * crossBeamOffset , binormal * -1f, normal);
-            SupportBeamExtruder.extrude (right - binormal * crossBeamOffset , binormal* -1f, normal);
-            SupportBeamExtruder.end ();
+                SupportBeamExtruder.extrude (left + binormal * crossBeamOffset, binormal * -1f, normal);
+                SupportBeamExtruder.extrude (right - binormal * crossBeamOffset, binormal * -1f, normal);
+                SupportBeamExtruder.end ();
 
-            SupportBeamExtruder.extrude (left, normal, binormal);
-            SupportBeamExtruder.extrude (new Vector3(left.x,Mathf.FloorToInt(left.y),left.z) , normal, binormal);
-            SupportBeamExtruder.end ();
+                SupportBeamExtruder.extrude (left, normal, binormal);
+                SupportBeamExtruder.extrude (new Vector3 (left.x, Mathf.FloorToInt (left.y), left.z), normal, binormal);
+                SupportBeamExtruder.end ();
 
-            SupportBeamExtruder.extrude (right, normal, binormal);
-            SupportBeamExtruder.extrude (new Vector3(right.x,Mathf.FloorToInt(right.y),right.z) , normal, binormal);
-            SupportBeamExtruder.end ();
+                SupportBeamExtruder.extrude (right, normal, binormal);
+                SupportBeamExtruder.extrude (new Vector3 (right.x, Mathf.FloorToInt (right.y), right.z), normal, binormal);
+                SupportBeamExtruder.end ();
 
-            SupportBottomBeamExtruder.extrude (new Vector3(left.x,Mathf.FloorToInt(left.y),left.z)  + binormal * (.5f / 2.0f) , binormal * -1f, Vector3.down);
-            SupportBottomBeamExtruder.extrude (new Vector3(right.x,Mathf.FloorToInt(right.y),right.z) - binormal * (.5f / 2.0f)  , binormal * -1f, Vector3.down);
-            SupportBottomBeamExtruder.end ();
+                SupportBottomBeamExtruder.extrude (new Vector3 (left.x, Mathf.FloorToInt (left.y), left.z) + binormal * (.5f / 2.0f), binormal * -1f, Vector3.down);
+                SupportBottomBeamExtruder.extrude (new Vector3 (right.x, Mathf.FloorToInt (right.y), right.z) - binormal * (.5f / 2.0f), binormal * -1f, Vector3.down);
+                SupportBottomBeamExtruder.end ();
             
 
-            pos += segments;
-            crossBeamIndex++;
+                pos += segments;
+                crossBeamIndex++;
+            }
         }
 
     }
