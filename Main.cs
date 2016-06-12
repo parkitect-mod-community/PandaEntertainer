@@ -7,6 +7,8 @@ public class Main : IMod
 	public static AssetBundleManager AssetBundleManager = null;
     public static Configuration Configeration = null;
 
+    public static string HASH = "ASDFawjebfa8pwh9n3a3h8ank";
+
     private List<UnityEngine.Object> registeredObjects = new List<UnityEngine.Object>();
 
     GameObject hider;
@@ -55,7 +57,7 @@ public class Main : IMod
         trackRider.meshGenerator.customColors = colors;
         trackRider.setDisplayName("MineTrain Coaster");
         trackRider.price = 3600;
-        trackRider.name = "mine_train_coaster_GO";
+        trackRider.name = "mine_train_coaster_GO" + HASH;
         AssetManager.Instance.registerObject (trackRider);
         registeredObjects.Add (trackRider);
 
@@ -72,9 +74,9 @@ public class Main : IMod
 
         //add Component
         MineTrainCar frontCar = frontcarGo.AddComponent<MineTrainCar> ();
-        frontCar.name = "MineTrainCar_Front";
+        frontCar.name = "MineTrainCar_Front" + HASH;
         MineTrainCar car = carGo.AddComponent<MineTrainCar> ();
-        car.name = "MineTrainCar_Car";
+        car.name = "MineTrainCar_Car" + HASH;
 
         frontCar.offsetFront = .4f;
         frontCar.Decorate (true);
@@ -83,7 +85,7 @@ public class Main : IMod
         CoasterCarInstantiator coasterCarInstantiator = ScriptableObject.CreateInstance<CoasterCarInstantiator> ();
         List<CoasterCarInstantiator> trains = new List<CoasterCarInstantiator>();
 
-        coasterCarInstantiator.name = "Mine Train@CoasterCarInstantiator";
+        coasterCarInstantiator.name = "Mine Train@CoasterCarInstantiator" + HASH;
         coasterCarInstantiator.defaultTrainLength = 5;
         coasterCarInstantiator.maxTrainLength = 7;
         coasterCarInstantiator.minTrainLength = 2;
