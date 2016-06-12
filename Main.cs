@@ -57,7 +57,7 @@ public class Main : IMod
         trackRider.meshGenerator.customColors = colors;
         trackRider.setDisplayName("MineTrain Coaster");
         trackRider.price = 3600;
-        trackRider.name = "mine_train_coaster_GO" + HASH;
+        trackRider.name = "mine_train_coaster_GO" ;
         AssetManager.Instance.registerObject (trackRider);
         registeredObjects.Add (trackRider);
 
