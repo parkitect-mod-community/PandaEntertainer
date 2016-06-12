@@ -72,8 +72,11 @@ public class Main : IMod
 
         //add Component
         MineTrainCar frontCar = frontcarGo.AddComponent<MineTrainCar> ();
+        frontCar.name = "MineTrainCar_Front";
         MineTrainCar car = carGo.AddComponent<MineTrainCar> ();
+        car.name = "MineTrainCar_Car";
 
+        frontCar.offsetFront = .4f;
         frontCar.Decorate (true);
         car.Decorate (false);
 

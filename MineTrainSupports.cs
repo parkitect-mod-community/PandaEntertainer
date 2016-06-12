@@ -72,9 +72,6 @@ public class MineTrainSupports : Support
             else
                 support.transform.Rotate (Vector3.forward, ((index + 4) % 4) * 90f);
 
-
-
-
             support.GetComponent<Renderer> ().sharedMaterial = baseMaterial;
             GameObjectHelper.SetUV (support, 14, 15);
 
