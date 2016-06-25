@@ -30,7 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>HelloMod</RootNamespace>
+    <RootNamespace>SideFriction</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
@@ -63,9 +63,9 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="MinetrainTrackGenerator.cs" />
     <Compile Include="MineTrainCar.cs" />
-    <Compile Include="MineTrainSupportInstantiator.cs" />
     <Compile Include="MineTrainSupports.cs" />
     <Compile Include="GameObjectHelper.cs" />
+    <Compile Include="CoasterTools.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
