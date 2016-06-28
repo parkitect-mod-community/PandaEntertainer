@@ -61,11 +61,11 @@
     <Compile Include="Main.cs" />
     <Compile Include="AssetBundleManager.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="MinetrainTrackGenerator.cs" />
     <Compile Include="MineTrainCar.cs" />
     <Compile Include="MineTrainSupports.cs" />
     <Compile Include="GameObjectHelper.cs" />
     <Compile Include="CoasterTools.cs" />
+    <Compile Include="SideFrictionTrackGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>

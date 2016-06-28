@@ -38,7 +38,7 @@ public class Main : IMod
         trackRider.dropsImportanceExcitement = .7f;
         trackRider.inversionsImportanceExcitement = .67f;
         trackRider.averageLatGImportanceExcitement = .7f;
-        trackRider.meshGenerator = ScriptableObject.CreateInstance<MinetrainTrackGenerator> ();
+        trackRider.meshGenerator = ScriptableObject.CreateInstance<SideFrictionTrackGenerator> ();
         trackRider.meshGenerator.stationPlatformGO = selected.meshGenerator.stationPlatformGO;
         trackRider.meshGenerator.material = selected.meshGenerator.material;
         trackRider.meshGenerator.liftMaterial = selected.meshGenerator.liftMaterial;
