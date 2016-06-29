@@ -5,12 +5,7 @@ using System.Collections.Generic;
 public class AssetBundleManager
 {
 	private Main Main {get;set;}
-    public GameObject FrontCarGo;
-    public GameObject BackCarGo;
-
-    public GameObject[] Support_Go;
-    public GameObject[] AngledSupportGo;
-    public GameObject SupportHalf;
+    public GameObject Car;
 
 
 
@@ -18,23 +13,7 @@ public class AssetBundleManager
 	public AssetBundleManager (Main main)
 	{
 		this.Main = main;
-        FrontCarGo = LoadAsset<GameObject> ("Front_Car");
-        BackCarGo = LoadAsset<GameObject> ("Cart");
-
-        Support_Go = new GameObject[] {
-            LoadAsset<GameObject> ("Support_1"),
-            LoadAsset<GameObject> ("Support_2"),
-            LoadAsset<GameObject> ("Support_3 1")
-            };
-
-        AngledSupportGo = new GameObject[] {
-            LoadAsset<GameObject>("Angle_support_1"),
-            LoadAsset<GameObject>("Angle_support_2")
-        };
-
-        SupportHalf = LoadAsset<GameObject> ("Half_Support");
-
-
+        Car = LoadAsset<GameObject> ("SideFrictonCar");
 
     }
 
@@ -47,7 +26,7 @@ public class AssetBundleManager
 			T asset;
 
 			char dsc = System.IO.Path.DirectorySeparatorChar;
-			using (WWW www = new WWW("file://" + Main.Path + dsc + "assetbundle" + dsc + "MineTrain"))
+            using (WWW www = new WWW("file://" + Main.Path + dsc + "assetbundle" + dsc + "SideFriction"))
 			{
 
 				if (www.error != null)

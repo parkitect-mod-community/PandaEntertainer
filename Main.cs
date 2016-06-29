@@ -47,35 +47,28 @@ public class Main : IMod
         trackRider.meshGenerator.crossBeamGO = selected.meshGenerator.crossBeamGO;
 
 
-        Color[] colors = new Color[] { new Color(63f / 255f, 46f / 255f, 37f / 255f, 1), new Color(43f / 255f, 35f / 255f, 35f / 255f, 1), new Color(90f / 255f, 90f / 255f, 90f / 255f, 1) };
-        trackRider.meshGenerator.customColors = colors;
+        Color[] colors = new Color[] { new Color(68f / 255f, 47f / 255f, 37f / 255f, 1), new Color(74f / 255f, 32f / 255f, 32f / 255f, 1), new Color(66f / 255f, 66f / 255f, 66f / 255f, 1) };
         trackRider.meshGenerator.customColors = colors;
         trackRider.setDisplayName("Side Friction Coaster");
         trackRider.price = 3600;
         trackRider.name = "side_friction_GO" ;
+        trackRider.maxBankingAngle = 20;
         AssetManager.Instance.registerObject (trackRider);
         registeredObjects.Add (trackRider);
 
         //get car
-        GameObject carGo = UnityEngine.GameObject.Instantiate(Main.AssetBundleManager.BackCarGo);
+        GameObject carGo = UnityEngine.GameObject.Instantiate(Main.AssetBundleManager.Car);
         Rigidbody carRigid = carGo.AddComponent<Rigidbody> ();
         carRigid.isKinematic = true;
         carGo.AddComponent<BoxCollider> ();
 
-        GameObject frontcarGo = UnityEngine.GameObject.Instantiate(Main.AssetBundleManager.FrontCarGo);
-        Rigidbody frontcarRigid = frontcarGo.AddComponent<Rigidbody> ();
-        frontcarRigid.isKinematic = true;
-        frontcarGo.AddComponent<BoxCollider> ();
 
         //add Component
-        MineTrainCar frontCar = frontcarGo.AddComponent<MineTrainCar> ();
-        frontCar.name = "SideFriction_Front" + HASH;
         MineTrainCar car = carGo.AddComponent<MineTrainCar> ();
         car.name = "SideFriction_Car" + HASH;
 
-        frontCar.offsetFront = .4f;
-        frontCar.Decorate (true);
-        car.Decorate (false);
+        car.offsetFront = .02f;
+        car.Decorate (true);
 
         CoasterCarInstantiator coasterCarInstantiator = ScriptableObject.CreateInstance<CoasterCarInstantiator> ();
         List<CoasterCarInstantiator> trains = new List<CoasterCarInstantiator>();
@@ -85,29 +78,21 @@ public class Main : IMod
         coasterCarInstantiator.maxTrainLength = 7;
         coasterCarInstantiator.minTrainLength = 2;
         coasterCarInstantiator.carGO = carGo;
-        coasterCarInstantiator.frontCarGO = frontcarGo;
-
+  
         //register cars
-        AssetManager.Instance.registerObject (frontCar);
         AssetManager.Instance.registerObject (car);
-        registeredObjects.Add (frontCar);
         registeredObjects.Add (car);
         //Offset
-        float CarOffset = .02f;
-        car.offsetBack = CarOffset;
-        frontCar.offsetBack = CarOffset;
+        car.offsetBack = .25f;
 
         //Restraints
         RestraintRotationController controller = carGo.AddComponent<RestraintRotationController>();
-        RestraintRotationController controllerFront = frontcarGo.AddComponent<RestraintRotationController>();
         controller.closedAngles = new Vector3(0,0,120);
-        controllerFront.closedAngles = new Vector3(0, 0, 120);
 
 
         //Custom Colors
-        Color[] CarColors = new Color[] { new Color(68f / 255, 58f / 255, 50f / 255), new Color(176f / 255, 7f / 255, 7f / 255), new Color(55f / 255, 32f / 255, 12f / 255),new Color(61f / 255, 40f / 255, 19f / 255)};
+        Color[] CarColors = new Color[] { new Color(0f / 255, 4f / 255, 190f / 255), new Color(138f / 255, 15f / 255, 15f / 255), new Color(101f / 255, 21f / 255, 27f / 255),new Color(172f / 255, 41f / 255, 42f / 255)};
 
-        MakeRecolorble(frontcarGo, "CustomColorsDiffuse", CarColors);
         MakeRecolorble(carGo, "CustomColorsDiffuse", CarColors);
 
         coasterCarInstantiator.displayName = "Side Friction Car";
@@ -120,8 +105,7 @@ public class Main : IMod
 
         hider.SetActive (false);
         carGo.transform.parent = hider.transform;
-        frontcarGo.transform.parent = hider.transform;
-
+      
 
 	}
 

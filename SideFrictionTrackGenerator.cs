@@ -90,8 +90,8 @@ public class SideFrictionTrackGenerator : MeshGenerator
         this.leftMinorWoodenTrack.extrude(trackPivot + binormal * .07304f , tangentPoint,normal);
         this.rightMinorWoodenTrack.extrude(trackPivot - binormal * .07304f, tangentPoint,normal);
 
-        this.leftSideWoodenTrack.extrude(trackPivot - normal * .1023f  + binormal * (-(leftSideWoodenTrack.width/2.0f) + (base.trackWidth / 2f) + (this.leftWoodenTrack.width /2.0f)),tangentPoint,normal);
-        this.rightSideWoodenTrack.extrude(trackPivot - normal * .1023f - binormal * (-(leftSideWoodenTrack.width/2.0f) + (base.trackWidth / 2f) + (this.rightWoodenTrack.width /2.0f)),tangentPoint,normal);
+        this.leftSideWoodenTrack.extrude(trackPivot - normal * .1323f  + binormal * (-(leftSideWoodenTrack.width/2.0f) + (base.trackWidth / 2f) + (this.leftWoodenTrack.width /2.0f)),tangentPoint,normal);
+        this.rightSideWoodenTrack.extrude(trackPivot - normal * .1323f - binormal * (-(leftSideWoodenTrack.width/2.0f) + (base.trackWidth / 2f) + (this.rightWoodenTrack.width /2.0f)),tangentPoint,normal);
 
         CrossBeamRailSupportLeft.extrude (trackPivot + binormalFlat * .5f - Vector3.up * (trackOffsetY()), tangentPoint, binormalFlat);
         CrossBeamRailSupportRight.extrude (trackPivot - binormalFlat * .5f - Vector3.up * (trackOffsetY()), tangentPoint, binormalFlat);
