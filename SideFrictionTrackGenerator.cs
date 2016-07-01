@@ -112,10 +112,13 @@ public class SideFrictionTrackGenerator : MeshGenerator
         int index = 0;
         while(pos < trackSegment.getLength())
         {
+         
+
+            float tForDistance = trackSegment.getTForDistance (pos);
+
             index++;
             pos += sample;
 
-            float tForDistance = trackSegment.getTForDistance (pos);
             Vector3 normal = trackSegment.getNormal (tForDistance);
             Vector3 tangentPoint = trackSegment.getTangentPoint (tForDistance);
             Vector3 binormal = Vector3.Cross (normal, tangentPoint).normalized;
@@ -181,6 +184,7 @@ public class SideFrictionTrackGenerator : MeshGenerator
 
                 }
             }
+
         }
 
     }

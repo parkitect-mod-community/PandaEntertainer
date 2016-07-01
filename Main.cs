@@ -53,6 +53,10 @@ public class Main : IMod
         trackRider.price = 3600;
         trackRider.name = "side_friction_GO" ;
         trackRider.maxBankingAngle = 20;
+        trackRider.accelerationVelocity = .09f;
+        trackRider.maximumVelocity = 80f;
+
+
         AssetManager.Instance.registerObject (trackRider);
         registeredObjects.Add (trackRider);
 
