@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TrackedRiderUtility;
 
+
 public class Main : IMod
 {
     public string Identifier { get; set; }
