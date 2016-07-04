@@ -6,11 +6,8 @@ public class Main : IMod
 {
     public string Identifier { get; set; }
 	public static AssetBundleManager AssetBundleManager = null;
- private List<UnityEngine.Object> registeredObjects = new List<UnityEngine.Object>();
-
     private TrackRiderBinder binder;
 
-    GameObject hider;
     public void onEnabled()
     {
        
@@ -64,11 +61,7 @@ public class Main : IMod
 
     public void onDisabled()
     {
-        foreach(UnityEngine.Object o in registeredObjects)
-        {
-            AssetManager.Instance.unregisterObject (o);
-        }
-        UnityEngine.GameObject.DestroyImmediate (hider);
+        binder.Unload ();
 	}
 
     public string Name
