@@ -71,7 +71,7 @@ public class Main : IMod
 
     public string Description
     {
-        get { return "Mine Train Coaster"; }
+        get { return "An early wooden coaster design that used a trough/side rail design that isn't use anymore in most modern day coaster. "; }
     }
 
 
