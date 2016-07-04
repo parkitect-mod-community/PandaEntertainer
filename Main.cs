@@ -11,7 +11,6 @@ public class Main : IMod
     public void onEnabled()
     {
        
-        hider = new GameObject ();
 
 		if (Main.AssetBundleManager == null) {
 
