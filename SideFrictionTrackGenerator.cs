@@ -241,7 +241,7 @@ public class SideFrictionTrackGenerator : MeshGenerator
         return 0.05f;
     }
 
-    protected override float getTunnelOffsetY()
+    public override float getTunnelOffsetY()
     {
         return 0.15f;
     }
