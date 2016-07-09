@@ -1,11 +1,12 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
-
+namespace PandaEntertainer
+{
 public class AssetBundleManager
 {
 	private Main Main {get;set;}
-    public GameObject Car;
+    public GameObject TestEntertainer;
 
 
 
@@ -13,7 +14,7 @@ public class AssetBundleManager
 	public AssetBundleManager (Main main)
 	{
 		this.Main = main;
-        Car = LoadAsset<GameObject> ("SideFrictonCar");
+        TestEntertainer = LoadAsset<GameObject> ("test");
 
     }
 
@@ -26,7 +27,7 @@ public class AssetBundleManager
 			T asset;
 
 			char dsc = System.IO.Path.DirectorySeparatorChar;
-            using (WWW www = new WWW("file://" + Main.Path + dsc + "assetbundle" + dsc + "SideFriction"))
+            using (WWW www = new WWW("file://" + Main.Path + dsc + "assetbundle" + dsc + "Entertainer"))
 			{
 
 				if (www.error != null)
@@ -64,6 +65,7 @@ public class AssetBundleManager
 			return null;
 		}
 	}
+}
 }
 
 
