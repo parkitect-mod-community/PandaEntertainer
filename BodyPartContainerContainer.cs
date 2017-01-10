@@ -32,25 +32,25 @@ namespace PandaEntertainer
         public void AddTorso(GameObject torso)
         {
 
-            GameObject m = remap (employee.costumes [0].bodyPartsMale.getTorso (0), torso);
+            GameObject m = remap (employee.costumes [0].bodyPartsMale.getTorso (0,true), torso);
             torsos.Add(m);
         }
 
         public void AddHeads(GameObject head)
         {
-            GameObject m = remap (employee.costumes [0].bodyPartsMale.getHead (0), head);
+            GameObject m = remap (employee.costumes [0].bodyPartsMale.getHead (0,true), head);
             heads.Add(m);
         }
 
         public void AddLegs(GameObject leg)
         {
-            GameObject m = remap (employee.costumes [0].bodyPartsMale.getLegs (0), leg);
+            GameObject m = remap (employee.costumes [0].bodyPartsMale.getLegs (0,true), leg);
             legs.Add(m);
         }
 
         public void AddHairstyles(GameObject hairstyle)
         {
-			hairstyles.Add(RemapMaterial(employee.costumes[0].bodyPartsMale.getHairstyle(0),hairstyle));
+			hairstyles.Add(RemapMaterial(employee.costumes[0].bodyPartsMale.getHairstyle(0,true),hairstyle));
         }
 
         private GameObject remap(GameObject duplicator, GameObject mappedTo)
