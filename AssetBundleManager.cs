@@ -6,16 +6,14 @@ namespace PandaEntertainer
 public class AssetBundleManager
 {
 	private Main Main {get;set;}
-    public GameObject TestEntertainer;
-
-
-
+    public GameObject Head;
+	public GameObject Body;
 
 	public AssetBundleManager (Main main)
 	{
 		this.Main = main;
-        TestEntertainer = LoadAsset<GameObject> ("test");
-
+        Head = LoadAsset<GameObject> ("head");
+		Body = LoadAsset<GameObject>("panda");
     }
 
 

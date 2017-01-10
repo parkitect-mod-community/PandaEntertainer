@@ -21,8 +21,8 @@ public class Main : IMod
         Employee employee = AssetManager.Instance.getPrefab<Employee> (Prefabs.Entertainer);
           
         BodyPartContainerContainer malePanda = new BodyPartContainerContainer ("Panda Costume", BodyPartContainerContainer.PrefabType.ENTERTAINER);
-        malePanda.AddTorso (Main.AssetBundleManager.TestEntertainer);
-            malePanda.AddHairstyles (employee.costumes [0].bodyPartsMale.getHairstyle (0));
+		malePanda.AddTorso (Main.AssetBundleManager.Body);
+		malePanda.AddHairstyles (Main.AssetBundleManager.Head);
 
        EmployeeCostumeContainer costumeContainer = new EmployeeCostumeContainer ("Panda", "Panda", new Color[]{ });
        costumeContainer.SetMalePartContainer (malePanda.Apply());

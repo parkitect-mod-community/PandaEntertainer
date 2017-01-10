@@ -25,13 +25,13 @@ namespace PandaEntertainer
             bodyContainer = ScriptableObject.CreateInstance<BodyPartsContainer> ();
             bodyContainer.name = name;
 
-
-            employee = AssetManager.Instance.getPrefab<Employee> (Prefabs.Entertainer);
+			employee = AssetManager.Instance.getPrefab<Employee> (Prefabs.Entertainer);
 
         }
 
         public void AddTorso(GameObject torso)
         {
+
             GameObject m = remap (employee.costumes [0].bodyPartsMale.getTorso (0), torso);
             torsos.Add(m);
         }
@@ -50,8 +50,7 @@ namespace PandaEntertainer
 
         public void AddHairstyles(GameObject hairstyle)
         {
-            GameObject m = remap (employee.costumes [0].bodyPartsMale.getHairstyle (0), hairstyle);
-            hairstyles.Add(m);
+			hairstyles.Add(RemapMaterial(employee.costumes[0].bodyPartsMale.getHairstyle(0),hairstyle));
         }
 
         private GameObject remap(GameObject duplicator, GameObject mappedTo)
@@ -60,7 +59,8 @@ namespace PandaEntertainer
 
             SkinnedMeshRenderer skinnedMesh = go.GetComponentInChildren<SkinnedMeshRenderer> ();
             SkinnedMeshRenderer mappingMesh = mappedTo.GetComponentInChildren<SkinnedMeshRenderer> ();
-        
+    		
+
             if (skinnedMesh == null) {
                 UnityEngine.Debug.Log ("does not have skinned mesh:" + mappedTo.name );
                 return go;
@@ -110,12 +110,35 @@ namespace PandaEntertainer
             tempMesh.normals = mappingMesh.sharedMesh.normals;
             tempMesh.tangents = mappingMesh.sharedMesh.tangents;
 
-            tempMesh.boneWeights = boneWeights.ToArray ();
+			tempMesh.boneWeights = boneWeights.ToArray ();
             tempMesh.bindposes = bp.ToArray();
             skinnedMesh.sharedMesh = tempMesh;
 
-            return go;
+			/*Material mat =  Material.Instantiate(skinnedMesh.sharedMaterial);
+			mat.SetTexture("_MainTex", mappingMesh.material.GetTexture("_MainTex"));
+			mat.SetTexture("_DetailAlbedoMap",mappingMesh.material.GetTexture("_MainTex"));
+*/
+
+			skinnedMesh.sharedMaterial = mappingMesh.material;
+
+
+
+			return go;
         }
+
+
+		public GameObject RemapMaterial(GameObject duplicator, GameObject mappedTo)
+		{
+            
+			MeshRenderer skinnedMesh = duplicator.GetComponentInChildren<MeshRenderer>();
+			MeshRenderer mappingMesh = mappedTo.GetComponentInChildren<MeshRenderer>();
+
+			Material material= Material.Instantiate(skinnedMesh.sharedMaterial);
+			material.mainTexture = mappingMesh.material.mainTexture;
+
+			mappingMesh.sharedMaterial = material;
+			return mappedTo; 
+		}
 
         private int Remapper(int index, Dictionary<String,int> newMapping,Dictionary<int,String> oldMapping)
         {
@@ -127,6 +150,7 @@ namespace PandaEntertainer
             }
             return 0;
         }
+
 
         public BodyPartsContainer Apply()
         {
