@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Reflection;
 using System.Collections.Generic;
+using Object = UnityEngine.Object;
 
 namespace PandaEntertainer
 {
@@ -11,58 +12,59 @@ namespace PandaEntertainer
             ENTERTAINER
         }
 
-        private BodyPartsContainer bodyContainer;
+        private readonly BodyPartsContainer _bodyContainer;
 
-        private List<GameObject> torsos = new List<GameObject>();
-        private List<GameObject> heads = new List<GameObject>();
-        private List<GameObject> legs = new List<GameObject>();
-        private List<GameObject> hairstyles = new List<GameObject>();
+        private readonly List<GameObject> _torsos = new List<GameObject>();
+        private readonly List<GameObject> _heads = new List<GameObject>();
+        private readonly List<GameObject> _legs = new List<GameObject>();
+        private readonly List<GameObject> _hairstyles = new List<GameObject>();
 
-        private Employee employee;
+        private readonly Employee _employee;
 
         public BodyPartContainerContainer (string name,PrefabType type)
         {
-            bodyContainer = ScriptableObject.CreateInstance<BodyPartsContainer> ();
-            bodyContainer.name = name;
-
-			employee = AssetManager.Instance.getPrefab<Employee> (Prefabs.Entertainer);
-
+            _bodyContainer = ScriptableObject.CreateInstance<BodyPartsContainer> ();
+            _bodyContainer.name = name;
+           
+			_employee = AssetManager.Instance.getPrefab<Employee> (Prefabs.Entertainer);
+           
+    
         }
 
         public void AddTorso(GameObject torso)
         {
 
-            GameObject m = remap (employee.costumes [0].bodyPartsMale.getTorso (0,true), torso);
-            torsos.Add(m);
+            GameObject m = Remap (_employee.costumes [0].bodyPartsMale.getTorso (0), torso);
+            _torsos.Add(m);
         }
 
         public void AddHeads(GameObject head)
         {
-            GameObject m = remap (employee.costumes [0].bodyPartsMale.getHead (0,true), head);
-            heads.Add(m);
+            GameObject m = Remap (_employee.costumes [0].bodyPartsMale.getHead (0), head);
+            _heads.Add(m);
         }
 
         public void AddLegs(GameObject leg)
         {
-            GameObject m = remap (employee.costumes [0].bodyPartsMale.getLegs (0,true), leg);
-            legs.Add(m);
+            GameObject m = Remap (_employee.costumes [0].bodyPartsMale.getLegs (0), leg);
+            _legs.Add(m);
         }
 
         public void AddHairstyles(GameObject hairstyle)
         {
-			hairstyles.Add(RemapMaterial(employee.costumes[0].bodyPartsMale.getHairstyle(0,true),hairstyle));
+            _hairstyles.Add(RemapMaterial(_employee.costumes[0].bodyPartsMale.getHairstyle(0), hairstyle));
         }
 
-        private GameObject remap(GameObject duplicator, GameObject mappedTo)
+        private GameObject Remap(GameObject duplicator, GameObject mappedTo)
         {
-            GameObject go = GameObject.Instantiate (duplicator);
+            GameObject go = Object.Instantiate (duplicator);
 
             SkinnedMeshRenderer skinnedMesh = go.GetComponentInChildren<SkinnedMeshRenderer> ();
             SkinnedMeshRenderer mappingMesh = mappedTo.GetComponentInChildren<SkinnedMeshRenderer> ();
     		
 
             if (skinnedMesh == null) {
-                UnityEngine.Debug.Log ("does not have skinned mesh:" + mappedTo.name );
+                Debug.Log ("does not have skinned mesh:" + mappedTo.name );
                 return go;
             }
 
@@ -100,7 +102,7 @@ namespace PandaEntertainer
                 
             }
 
-            Mesh tempMesh = UnityEngine.Object.Instantiate (skinnedMesh.sharedMesh);
+            Mesh tempMesh = Object.Instantiate (skinnedMesh.sharedMesh);
 
             tempMesh.Clear ();
             tempMesh.vertices = mappingMesh.sharedMesh.vertices;
@@ -114,27 +116,22 @@ namespace PandaEntertainer
             tempMesh.bindposes = bp.ToArray();
             skinnedMesh.sharedMesh = tempMesh;
 
-			/*Material mat =  Material.Instantiate(skinnedMesh.sharedMaterial);
-			mat.SetTexture("_MainTex", mappingMesh.material.GetTexture("_MainTex"));
-			mat.SetTexture("_DetailAlbedoMap",mappingMesh.material.GetTexture("_MainTex"));
-*/
-
 			skinnedMesh.sharedMaterial = mappingMesh.material;
-
-
 
 			return go;
         }
 
 
-		public GameObject RemapMaterial(GameObject duplicator, GameObject mappedTo)
+        private GameObject RemapMaterial(GameObject duplicator, GameObject mappedTo)
 		{
-            
+		    
 			MeshRenderer skinnedMesh = duplicator.GetComponentInChildren<MeshRenderer>();
 			MeshRenderer mappingMesh = mappedTo.GetComponentInChildren<MeshRenderer>();
 
-			Material material= Material.Instantiate(skinnedMesh.sharedMaterial);
+			Material material= Object.Instantiate(skinnedMesh.sharedMaterial);
 			material.mainTexture = mappingMesh.material.mainTexture;
+		    material.mainTextureOffset = Vector2.zero;
+		    material.mainTextureScale = Vector2.one;
 
 			mappingMesh.sharedMaterial = material;
 			return mappedTo; 
@@ -146,7 +143,7 @@ namespace PandaEntertainer
             if (newMapping.ContainsKey(boneName)) {
                 return newMapping[boneName];
             } else {
-                UnityEngine.Debug.Log ("can't find bone mapping:" + boneName);
+                Debug.Log ("can't find bone mapping:" + boneName);
             }
             return 0;
         }
@@ -154,17 +151,17 @@ namespace PandaEntertainer
 
         public BodyPartsContainer Apply()
         {
-            typeof(BodyPartsContainer).GetField ("torsos", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic).SetValue (bodyContainer, torsos.ToArray());
-            typeof(BodyPartsContainer).GetField ("heads", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic).SetValue (bodyContainer, heads.ToArray());
-            typeof(BodyPartsContainer).GetField ("legs", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic).SetValue (bodyContainer, legs.ToArray());
-            typeof(BodyPartsContainer).GetField ("hairstyles", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic).SetValue (bodyContainer,hairstyles.ToArray());
+            typeof(BodyPartsContainer).GetField ("torsos", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue (_bodyContainer, _torsos.ToArray());
+            typeof(BodyPartsContainer).GetField ("heads", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue (_bodyContainer, _heads.ToArray());
+            typeof(BodyPartsContainer).GetField ("legs", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue (_bodyContainer, _legs.ToArray());
+            typeof(BodyPartsContainer).GetField ("hairstyles", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue (_bodyContainer,_hairstyles.ToArray());
 
-            typeof(BodyPartsContainer).GetField ("accessories", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic).SetValue (bodyContainer, new WearableProduct[]{});
-            typeof(BodyPartsContainer).GetField ("headItems", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic).SetValue (bodyContainer, new WearableProduct[]{});
-            typeof(BodyPartsContainer).GetField ("faceItems", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic).SetValue (bodyContainer, new WearableProduct[]{});
+            typeof(BodyPartsContainer).GetField ("accessories", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue (_bodyContainer, new WearableProduct[]{});
+            typeof(BodyPartsContainer).GetField ("headItems", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue (_bodyContainer, new WearableProduct[]{});
+            typeof(BodyPartsContainer).GetField ("faceItems", BindingFlags.GetField | BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue (_bodyContainer, new WearableProduct[]{});
 
 
-            return bodyContainer;
+            return _bodyContainer;
         }
 
         public void Dispose()

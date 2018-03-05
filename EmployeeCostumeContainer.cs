@@ -1,29 +1,28 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace PandaEntertainer
 {
     public class EmployeeCostumeContainer
     {
-        public EmployeeCostume employeeCostume { get; private set;}
+        public EmployeeCostume EmployeeCostume { get; }
 
         public EmployeeCostumeContainer(string name,string costumeName, Color[] costumeColors)
         {
-            employeeCostume =  ScriptableObject.CreateInstance<EmployeeCostume>();
-            employeeCostume.name = name;
-            employeeCostume.costumeName = costumeName;
-            employeeCostume.customColors = costumeColors;
+            EmployeeCostume =  ScriptableObject.CreateInstance<EmployeeCostume>();
+            EmployeeCostume.name = name;
+            EmployeeCostume.costumeName = costumeName;
+            EmployeeCostume.customColors = costumeColors;
 
         }
 
         public void SetMalePartContainer(BodyPartsContainer container)
         {
-            employeeCostume.bodyPartsMale = container;
+            EmployeeCostume.bodyPartsMale = container;
         }
 
         public void SetFemalePartContainer(BodyPartsContainer container)
         {
-            employeeCostume.bodyPartsFemale = container;
+            EmployeeCostume.bodyPartsFemale = container;
         }
 
     }

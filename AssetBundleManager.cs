@@ -1,31 +1,31 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections.Generic;
+using Object = UnityEngine.Object;
+
 namespace PandaEntertainer
 {
 public class AssetBundleManager
 {
-	private Main Main {get;set;}
-    public GameObject Head;
-	public GameObject Body;
+	private readonly Main _main;
+    public readonly GameObject Head;
+	public readonly GameObject Body;
 
 	public AssetBundleManager (Main main)
 	{
-		this.Main = main;
+		_main = main;	
+		
         Head = LoadAsset<GameObject> ("head");
 		Body = LoadAsset<GameObject>("panda");
-    }
+	}
 
 
 
-	private T  LoadAsset<T>(string prefabName) where T : UnityEngine.Object
+	private T  LoadAsset<T>(string prefabName) where T : Object
 	{
 		try
 		{
-			T asset;
-
 			char dsc = System.IO.Path.DirectorySeparatorChar;
-            using (WWW www = new WWW("file://" + Main.Path + dsc + "assetbundle" + dsc + "Entertainer"))
+            using (WWW www = new WWW("file://" + _main.Path + dsc + "assetbundle" + dsc + "Entertainer"))
 			{
 
 				if (www.error != null)
@@ -44,14 +44,14 @@ public class AssetBundleManager
 
 				try
 				{
-					asset = bundle.LoadAsset<T>(prefabName);
+					var asset = bundle.LoadAsset<T>(prefabName);
 					bundle.Unload(false);
-
+					
 					return asset;
 				}
 				catch (Exception e)
 				{
-					UnityEngine.Debug.LogException(e);
+					Debug.LogException(e);
 					bundle.Unload(false);
 					return null;
 				}
@@ -59,7 +59,7 @@ public class AssetBundleManager
 		}
 		catch (Exception e)
 		{
-			UnityEngine.Debug.LogException(e);
+			Debug.LogException(e);
 			return null;
 		}
 	}
