@@ -2,6 +2,8 @@
 using UnityEngine;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
 
 namespace PandaEntertainer
@@ -122,21 +124,6 @@ namespace PandaEntertainer
         }
 
 
-        private GameObject RemapMaterial(GameObject duplicator, GameObject mappedTo)
-		{
-		    
-			MeshRenderer skinnedMesh = duplicator.GetComponentInChildren<MeshRenderer>();
-			MeshRenderer mappingMesh = mappedTo.GetComponentInChildren<MeshRenderer>();
-
-			Material material= Object.Instantiate(skinnedMesh.sharedMaterial);
-			material.mainTexture = mappingMesh.material.mainTexture;
-		    material.mainTextureOffset = Vector2.zero;
-		    material.mainTextureScale = Vector2.one;
-
-			mappingMesh.sharedMaterial = material;
-			return mappedTo; 
-		}
-
         private int Remapper(int index, Dictionary<String,int> newMapping,Dictionary<int,String> oldMapping)
         {
             String boneName = oldMapping [index];
@@ -146,6 +133,24 @@ namespace PandaEntertainer
                 Debug.Log ("can't find bone mapping:" + boneName);
             }
             return 0;
+        }
+
+        private GameObject RemapMaterial(GameObject duplicator, GameObject mappedTo)
+        {
+		    
+            MeshRenderer skinnedMesh = duplicator.GetComponentInChildren<MeshRenderer>();
+            MeshRenderer mappingMesh = mappedTo.GetComponentInChildren<MeshRenderer>();
+
+            Material material= Object.Instantiate(skinnedMesh.sharedMaterial);
+            material.mainTexture = mappingMesh.material.mainTexture;
+            Texture2D t = new Texture2D(1, 1);
+            t.SetPixel(0,0,Color.clear);
+            t.Apply();
+            material.SetTexture("_MaskTex",t);
+            
+
+            mappingMesh.sharedMaterial = material;
+            return mappedTo; 
         }
 
 

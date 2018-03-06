@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,20 +31,32 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\Parkitect_Data\Managed\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Parkitect">
+      <HintPath>../../Parkitect_Data/Managed/Parkitect.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\Parkitect_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>../../Parkitect_Data/Managed/UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>../../Parkitect_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\Parkitect_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>../../Parkitect_Data/Managed/UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>../../Parkitect_Data/Managed/UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -53,10 +66,24 @@
     <Compile Include="Main.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assetbundle\assetbundle" />
-    <Content Include="assetbundle\assetbundle.manifest" />
-    <Content Include="assetbundle\Entertainer" />
-    <Content Include="assetbundle\Entertainer.manifest" />
+    <Content Include="assetbundle\assetbundle">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assetbundle\assetbundle.manifest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assetbundle\Entertainer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assetbundle\Entertainer.manifest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="preview.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="steam_workshop-id">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

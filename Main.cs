@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using PandaEntertainer;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace PandaEntertainer
-{
+
 public class Main : IMod
 {
     public string Identifier { get; set; }
@@ -53,7 +53,7 @@ public class Main : IMod
 	    {
 		    ScriptableSingleton<AssetManager>.Instance.unregisterObject(current);
 	    }
-	    UnityEngine.Object.DestroyImmediate(hider);
+	    Object.DestroyImmediate(hider);
 	}
 
     public string Name => "Panda Entertainer";
@@ -71,5 +71,5 @@ public class Main : IMod
 		}
 	}
 }
-}
+
 
