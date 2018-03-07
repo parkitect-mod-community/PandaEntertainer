@@ -72,10 +72,10 @@
     <Content Include="assetbundle\assetbundle.manifest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="assetbundle\Entertainer">
+    <Content Include="assetbundle\entertainer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="assetbundle\Entertainer.manifest">
+    <Content Include="assetbundle\entertainer.manifest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="preview.png">

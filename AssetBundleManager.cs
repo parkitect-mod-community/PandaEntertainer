@@ -11,7 +11,7 @@ namespace PandaEntertainer
         public AssetBundleManager(Main main)
         {
             var dsc = System.IO.Path.DirectorySeparatorChar;
-            _assetBundle = AssetBundle.LoadFromFile(main.Path + dsc + "assetbundle" + dsc + "Entertainer");
+            _assetBundle = AssetBundle.LoadFromFile(main.Path + dsc + "entertainer");
 
             Head = _assetBundle.LoadAsset<GameObject>("head");
             Body = _assetBundle.LoadAsset<GameObject>("panda");

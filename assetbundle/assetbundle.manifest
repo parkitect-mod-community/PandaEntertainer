@@ -1,7 +1,7 @@
 ManifestFileVersion: 0
-CRC: 4003570375
+CRC: 4257393064
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: Entertainer
+      Name: entertainer
       Dependencies: {}
