@@ -4,16 +4,15 @@ namespace PandaEntertainer
 {
     public class EmployeeCostumeContainer
     {
-        public EmployeeCostume EmployeeCostume { get; }
-
-        public EmployeeCostumeContainer(string name,string costumeName, Color[] costumeColors)
+        public EmployeeCostumeContainer(string name, string costumeName, Color[] costumeColors)
         {
-            EmployeeCostume =  ScriptableObject.CreateInstance<EmployeeCostume>();
+            EmployeeCostume = ScriptableObject.CreateInstance<EmployeeCostume>();
             EmployeeCostume.name = name;
             EmployeeCostume.costumeName = costumeName;
             EmployeeCostume.customColors = costumeColors;
-
         }
+
+        public EmployeeCostume EmployeeCostume { get; }
 
         public void SetMalePartContainer(BodyPartsContainer container)
         {
@@ -24,7 +23,5 @@ namespace PandaEntertainer
         {
             EmployeeCostume.bodyPartsFemale = container;
         }
-
     }
 }
-
