@@ -15,12 +15,8 @@ namespace PandaEntertainer
 
             Head = _assetBundle.LoadAsset<GameObject>("5bc917ea4eecb4beea26792b912a314b");
             Body = _assetBundle.LoadAsset<GameObject>("81b749044290b496eba80cd27935f395");
-        }
-        
-        
-        public void unload()
-        {
             _assetBundle.Unload(false);
         }
+
     }
 }

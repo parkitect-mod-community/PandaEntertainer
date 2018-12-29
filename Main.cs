@@ -42,9 +42,7 @@ public class Main : IMod
         AssetManager.Instance.registerObject(costumeContainer.EmployeeCostume);
 
         registeredObjects.Add(costumeContainer.EmployeeCostume);
-        
-        
-        AssetBundleManager.unload();
+
     }
 
     public void onDisabled()
