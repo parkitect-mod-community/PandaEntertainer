@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3833678261
+CRC: 831585958
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2c00a24d78df86313920745a9e21aed7
+    Hash: deb7906659cc45166ba4db3a76f54c4a
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3c9ee638191e22dbd8fe2ac5db11ec41
@@ -32,6 +32,6 @@ ClassTypes:
 - Class: 137
   Script: {instanceID: 0}
 Assets:
-- Assets/head.prefab
-- Assets/panda.prefab
+- Assets/Resources/AssetPack/5bc917ea4eecb4beea26792b912a314b.prefab
+- Assets/Resources/AssetPack/81b749044290b496eba80cd27935f395.prefab
 Dependencies: []

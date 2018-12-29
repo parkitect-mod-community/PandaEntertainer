@@ -29,8 +29,10 @@ public class Main : IMod
         var panda =
             new BodyPartContainerContainer("Panda Costume", BodyPartContainerContainer.PrefabType.ENTERTAINER, _hider);
 
-        panda.AddTorso(AssetBundleManager.Body);
-        panda.AddHairstyles(AssetBundleManager.Head);
+        GameObject hider = new GameObject();
+        hider.transform.SetParent(panda.AddTorso(Object.Instantiate(AssetBundleManager.Body)).transform);
+        hider.transform.SetParent(panda.AddHairstyles(Object.Instantiate(AssetBundleManager.Head)).transform);
+        hider.SetActive(false);
 
         var costumeContainer = new EmployeeCostumeContainer("Panda", "Panda", new Color[] { });
         costumeContainer.SetMalePartContainer(panda.Apply());
@@ -38,8 +40,11 @@ public class Main : IMod
         Array.Resize(ref employee.costumes, employee.costumes.Length + 1);
         employee.costumes[employee.costumes.Length - 1] = costumeContainer.EmployeeCostume;
         AssetManager.Instance.registerObject(costumeContainer.EmployeeCostume);
-        
+
         registeredObjects.Add(costumeContainer.EmployeeCostume);
+        
+        
+        AssetBundleManager.unload();
     }
 
     public void onDisabled()

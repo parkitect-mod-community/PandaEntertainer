@@ -66,16 +66,10 @@
     <Compile Include="Main.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assetbundle\assetbundle">
+    <Content Include="assetbundle\assetpack">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="assetbundle\assetbundle.manifest">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assetbundle\entertainer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assetbundle\entertainer.manifest">
+    <Content Include="assetbundle\assetpack.manifest">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="preview.png">

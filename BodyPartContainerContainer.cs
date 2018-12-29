@@ -31,27 +31,31 @@ namespace PandaEntertainer
             _employee = AssetManager.Instance.getPrefab<Employee>(Prefabs.Entertainer);
         }
 
-        public void AddTorso(GameObject torso)
+        public GameObject AddTorso(GameObject torso)
         {
             var m = Remap(_employee.costumes[0].bodyPartsMale.getTorso(0), torso);
             _torsos.Add(m);
+            return torso;
         }
 
-        public void AddHeads(GameObject head)
+        public GameObject AddHeads(GameObject head)
         {
             var m = Remap(_employee.costumes[0].bodyPartsMale.getHead(0), head);
             _heads.Add(m);
+            return head;
         }
 
-        public void AddLegs(GameObject leg)
+        public GameObject AddLegs(GameObject leg)
         {
             var m = Remap(_employee.costumes[0].bodyPartsMale.getLegs(0), leg);
             _legs.Add(m);
+            return leg;
         }
 
-        public void AddHairstyles(GameObject hairstyle)
+        public GameObject AddHairstyles(GameObject hairstyle)
         {
             _hairstyles.Add(RemapMaterial(_employee.costumes[0].bodyPartsMale.getHairstyle(0), hairstyle));
+            return hairstyle;
         }
 
         private GameObject Remap(GameObject duplicator, GameObject mappedTo)
@@ -84,6 +88,8 @@ namespace PandaEntertainer
                 else
                     bp.Add(skinnedMesh.sharedMesh.bindposes[x]);
             }
+
+            PersonStitcher s;
 
             var boneWeights = new List<BoneWeight>();
             for (var x = 0; x < mappingMesh.sharedMesh.boneWeights.Length; x++)
