@@ -1,4 +1,19 @@
-﻿using System.Collections.Generic;
+﻿/**
+* Copyright 2019 Michael Pollind
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
@@ -16,11 +31,11 @@ namespace PandaEntertainer
         private readonly Employee _employee;
         private readonly List<GameObject> _hairstyles = new List<GameObject>();
         private readonly List<GameObject> _heads = new List<GameObject>();
+
+        private readonly GameObject _hider;
         private readonly List<GameObject> _legs = new List<GameObject>();
 
         private readonly List<GameObject> _torsos = new List<GameObject>();
-
-        private readonly GameObject _hider;
 
         public BodyPartContainerContainer(string name, PrefabType type, GameObject hider)
         {
@@ -88,9 +103,7 @@ namespace PandaEntertainer
                 else
                     bp.Add(skinnedMesh.sharedMesh.bindposes[x]);
             }
-
-            PersonStitcher s;
-
+            
             var boneWeights = new List<BoneWeight>();
             for (var x = 0; x < mappingMesh.sharedMesh.boneWeights.Length; x++)
             {

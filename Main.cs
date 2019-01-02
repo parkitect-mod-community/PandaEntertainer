@@ -29,7 +29,7 @@ public class Main : IMod
         var panda =
             new BodyPartContainerContainer("Panda Costume", BodyPartContainerContainer.PrefabType.ENTERTAINER, _hider);
 
-        GameObject hider = new GameObject();
+        var hider = new GameObject();
         hider.transform.SetParent(panda.AddTorso(Object.Instantiate(AssetBundleManager.Body)).transform);
         hider.transform.SetParent(panda.AddHairstyles(Object.Instantiate(AssetBundleManager.Head)).transform);
         hider.SetActive(false);
@@ -42,7 +42,6 @@ public class Main : IMod
         AssetManager.Instance.registerObject(costumeContainer.EmployeeCostume);
 
         registeredObjects.Add(costumeContainer.EmployeeCostume);
-
     }
 
     public void onDisabled()

@@ -1,12 +1,29 @@
-![pandas](https://parkitectnexus.com/media/images/1920x1080/ebf843ff179a1382f6ee8c82d132900e32a70ebd.jpg)
+![pandas](https://steamuserimages-a.akamaihd.net/ugc/928177176933571194/53256F52AFAB12A7BD6E05BAC42DFB7C8CAE3E41/)
 
-**Description**
+## Introduction
 
-This mod add pands to the base game
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Consider donating if you want to see more: https://www.paypal.me/michaelpollind
+Adds some new fuzzy panda entertainer to Parkitect.
 
-**Changelog**
 
-#### V1.0
-- Here comes the pandas!
+## License
+
+```
+/**
+* Copyright 2018 Michael Pollind
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+```
