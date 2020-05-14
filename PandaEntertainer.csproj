@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\pollend@PandaEntertainer\</OutputPath>
+    <OutputPath>..\..\pollend@PandaEntertainer\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -27,7 +27,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\pollend@PandaEntertainer\</OutputPath>
+    <OutputPath>..\..\pollend@PandaEntertainer\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -38,24 +38,29 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+
+    <Reference Include="UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>../../../Parkitect_Data/Managed/UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Parkitect">
-      <HintPath>../../Parkitect_Data/Managed/Parkitect.dll</HintPath>
+      <HintPath>../../../Parkitect_Data/Managed/Parkitect.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>../../Parkitect_Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>../../../Parkitect_Data/Managed/UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>../../Parkitect_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>../../../Parkitect_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>../../Parkitect_Data/Managed/UnityEngine.UI.dll</HintPath>
+      <HintPath>../../../Parkitect_Data/Managed/UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestWWWModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>../../Parkitect_Data/Managed/UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <HintPath>../../../Parkitect_Data/Managed/UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
