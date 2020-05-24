@@ -1,0 +1,39 @@
+ManifestFileVersion: 0
+CRC: 295205742
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 67b349bdbf6a6ceb5fb29200368a2862
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 256ee5934f7ce78186bc48215112a254
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+Assets:
+- Assets/panda_head.prefab
+- Assets/pand2.0/head.prefab
+- Assets/panda.prefab
+- Assets/pand2.0/panda.prefab
+Dependencies: []
