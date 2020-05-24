@@ -15,6 +15,7 @@
 */
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.Remoting.Proxies;
 using UnityEngine;
 
 namespace PandaEntertainer
@@ -37,8 +38,11 @@ namespace PandaEntertainer
 
         private readonly List<GameObject> _torsos = new List<GameObject>();
 
-        public BodyPartContainerContainer(string name, PrefabType type, GameObject hider)
+        private EmployeeCostume _baseCostume;
+
+        public BodyPartContainerContainer(EmployeeCostume baseCostume, string name, PrefabType type, GameObject hider)
         {
+            _baseCostume = baseCostume;
             _hider = hider;
             _bodyContainer = ScriptableObject.CreateInstance<BodyPartsContainer>();
             _bodyContainer.name = name;
@@ -48,28 +52,34 @@ namespace PandaEntertainer
 
         public GameObject AddTorso(GameObject torso)
         {
-            var m = Remap(_employee.costumes[0].bodyPartsMale.getTorso(0), torso);
+            var m = Remap(_baseCostume.bodyPartsMale.getTorso(0), torso);
             _torsos.Add(m);
             return torso;
         }
 
         public GameObject AddHeads(GameObject head)
         {
-            var m = Remap(_employee.costumes[0].bodyPartsMale.getHead(0), head);
+            var m = Remap(_baseCostume.bodyPartsMale.getHead(0), head);
             _heads.Add(m);
             return head;
         }
 
         public GameObject AddLegs(GameObject leg)
         {
-            var m = Remap(_employee.costumes[0].bodyPartsMale.getLegs(0), leg);
+            var m = Remap(_baseCostume.bodyPartsMale.getLegs(0), leg);
             _legs.Add(m);
             return leg;
         }
 
         public GameObject AddHairstyles(GameObject hairstyle)
         {
-            _hairstyles.Add(RemapMaterial(_employee.costumes[0].bodyPartsMale.getHairstyle(0), hairstyle));
+            MeshRenderer meshRenderer = hairstyle.GetComponent<MeshRenderer>();
+
+            Material material = new Material(ScriptableSingleton<AssetManager>.Instance.diffuseMaterial);
+            material.mainTexture = meshRenderer.material.mainTexture;
+            meshRenderer.sharedMaterial = material;
+
+            _hairstyles.Add(hairstyle);//RemapMaterial(_baseCostume.bodyPartsMale.getHairstyle(0), hairstyle));
             return hairstyle;
         }
 
@@ -80,7 +90,6 @@ namespace PandaEntertainer
 
             var skinnedMesh = go.GetComponentInChildren<SkinnedMeshRenderer>();
             var mappingMesh = mappedTo.GetComponentInChildren<SkinnedMeshRenderer>();
-
 
             if (skinnedMesh == null)
             {
@@ -103,7 +112,7 @@ namespace PandaEntertainer
                 else
                     bp.Add(skinnedMesh.sharedMesh.bindposes[x]);
             }
-            
+
             var boneWeights = new List<BoneWeight>();
             for (var x = 0; x < mappingMesh.sharedMesh.boneWeights.Length; x++)
             {
@@ -155,16 +164,19 @@ namespace PandaEntertainer
 
         private GameObject RemapMaterial(GameObject duplicator, GameObject mappedTo)
         {
-            var skinnedMesh = duplicator.GetComponentInChildren<MeshRenderer>();
-            var mappingMesh = mappedTo.GetComponentInChildren<MeshRenderer>();
+            var skinnedMesh = duplicator.GetComponent<MeshRenderer>();
+            var mappingMesh = mappedTo.GetComponent<MeshRenderer>();
 
             var material = Object.Instantiate(skinnedMesh.sharedMaterial);
+
+            // material.shader.renderQueue
+
             material.mainTexture = mappingMesh.material.mainTexture;
             var t = new Texture2D(1, 1);
-            t.SetPixel(0, 0, Color.clear);
+            t.SetPixel(0, 0, new Color(0,0,0,0));
             t.Apply();
             material.SetTexture("_MaskTex", t);
-
+            material.SetFloat("_Metallic", 0.0f);
 
             mappingMesh.sharedMaterial = material;
             return mappedTo;

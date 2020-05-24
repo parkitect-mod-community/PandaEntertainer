@@ -26,8 +26,14 @@ public class Main : IMod
 
         var employee = AssetManager.Instance.getPrefab<Employee>(Prefabs.Entertainer);
 
+        foreach (var c in employee.costumes)
+        {
+            Debug.Log(c.name);
+        }
+
         var panda =
-            new BodyPartContainerContainer("Panda Costume", BodyPartContainerContainer.PrefabType.ENTERTAINER, _hider);
+            new BodyPartContainerContainer(employee.costumes.First(k => k.name == "EntertainerCostumeRaptor"),"Panda Costume", BodyPartContainerContainer.PrefabType.ENTERTAINER, _hider);
+
 
         var hider = new GameObject();
         hider.transform.SetParent(panda.AddTorso(Object.Instantiate(AssetBundleManager.Body)).transform);
@@ -36,6 +42,8 @@ public class Main : IMod
 
         var costumeContainer = new EmployeeCostumeContainer("Panda", "Panda", new Color[] { });
         costumeContainer.SetMalePartContainer(panda.Apply());
+        costumeContainer.EmployeeCostume.animatorController = employee.costumes.First().animatorController;
+        costumeContainer.EmployeeCostume.meshAnimations = employee.costumes.First().meshAnimations;
 
         Array.Resize(ref employee.costumes, employee.costumes.Length + 1);
         employee.costumes[employee.costumes.Length - 1] = costumeContainer.EmployeeCostume;

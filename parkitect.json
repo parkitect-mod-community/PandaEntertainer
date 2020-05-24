@@ -1,0 +1,23 @@
+{
+  "name": "PandaEntertainer",
+  "folder": "pollend@PandaEntertainer",
+  "version": "v1.0.0",
+  "workshop": "1321453322",
+  "author": "Michael Pollind",
+  "description": null,
+  "preview": "./preview.png",
+  "assemblies": [
+    "System",
+    "System.Core",
+    "System.Data",
+    "UnityEngine",
+    "UnityEngine.AssetBundleModule",
+    "UnityEngine.CoreModule",
+    "Parkitect",
+    "UnityEngine.PhysicsModule",
+    "UnityEngine.AnimationModule"
+  ],
+  "assets": [
+    "assetbundle/**"
+  ]
+}
